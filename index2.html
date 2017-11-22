@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>亲们，日照港喊你来开会啦！</title>
+</head>
+<body>
+</body>
+<script type="text/javascript" src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+<script>
+    function go(){
+        location.href = 'http://wxly.p5w.net/index.php/home/roadshow/activityDetail/id/00017ADDE1E4AF694A6FAB21BB1B88C62FB2';
+    }
+    $("#goToTop").click(function () {
+        var speed=500;//滑动的速度
+        $('body,html').animate({ scrollTop: 0 }, speed);
+        return false;
+    });
+    var docEle = document.documentElement;
+    fn = function() {
+        var width = docEle.clientWidth;
+        if( width < 320 ) {
+            docEle.style.fontSize = 42.6667 + "px";//
+        }
+        else if( width > 750 ) {
+            docEle.style.fontSize = 100 + "px";
+        }
+        else {
+            //以750设计稿宽度为基准设置fontSize:100px;这样保证iPhone6以下是高清
+            docEle.style.fontSize = 100 * (width / 750) + "px";
+        }
+    };
+    var evt = "onorientationchange" in window ? "orientationchange" : "resize";//区分Mobile和PC以加载不同的事件
+    window.addEventListener(evt, fn, false);
+    fn();
+    $(function(){
+        var qjAni = $('body').find('[qj-ani]');     //获取所有带qj-ani属性的元素
+        var eTop = 0;           //距离顶部的高度
+        var eHeight = 0;        //自身高度
+        var wHeight = $(window).height();        //屏幕高度
+        $(window).scroll(function () {          //页面滚动到某处后执行动画
+            for(var i=0; i<qjAni.length; i++){      //循环带qj-ani属性的所有的元素
+                eTop = qjAni.eq(i).offset().top;        //获取当前元素距离顶部的距离
+                eHeight = qjAni.eq(i).height();
+                //元素距离顶部高度减去滚动的高度小于屏幕高度的三分之二时（向上滚动到可视区域元素顶部距离屏幕底部三分之一时），元素距离顶部高度减去滚动的高度大于屏幕高度的三分之一减去元素自身高度时（向下滚动到可视区域元素顶部距离屏幕顶部三分之一时，添加动画css
+                if(eTop-$(window).scrollTop() < (wHeight/3*2).toFixed(0) && eTop-$(window).scrollTop() > (wHeight/3-eHeight).toFixed(0)){
+                    if(!qjAni.eq(i).hasClass(qjAni.eq(i).attr('qj-effect'))){
+                        qjAni.eq(i).addClass(qjAni.eq(i).attr('qj-effect'));
+                        if(!(qjAni.eq(i).next().attr('next') == undefined)){          //是否有关联的元素要触发动画，有的话加上next属性，目前支持下个元素关联，无法关联多个
+//                            for(var j=0;j<qjAni.eq(i).find('[next]').length;i++){
+                            qjAni.eq(i).next().addClass(qjAni.eq(i).next().attr('qj-effect'))
+//                            }
+                        }
+                    }
+                }
+                //页面滚动的距离大于元素距离顶部的距离加上元素自身高度时（向上滚动出可视区域），元素距离顶部高度减去滚动的高度大于屏幕高度时（向下滚动出可视区域），元素移除动画css
+                if($(window).scrollTop() > eTop+eHeight || eTop-$(window).scrollTop() > wHeight){
+                    if(qjAni.eq(i).hasClass(qjAni.eq(i).attr('qj-effect'))){
+                        qjAni.eq(i).removeClass(qjAni.eq(i).attr('qj-effect'));
+                        if(!(qjAni.eq(i).next().attr('next') == undefined)){                  //是否有关联的元素要触发动画，有的话加上next属性，目前支持下个元素关联，无法关联多个
+//                            for(var j=0;j<qjAni.eq(i).find('[next]').length;i++){
+                            qjAni.eq(i).next().removeClass(qjAni.eq(i).next().attr('qj-effect'))
+//                            }
+                        }
+                    }
+                }
+            }
+        });
+        var music = document.getElementById("bgMusic");
+        $("#audioBtn").click(function(){
+            if(music.paused){music.play();
+                $("#audioBtn").removeClass("pause").addClass("play");
+            }else{music.pause();
+                $("#audioBtn").removeClass("play").addClass("pause");
+            }
+        });
+        //一般情况下，这样就可以自动播放了，但是一些奇葩iPhone机不可以
+        document.getElementById('bgMusic').play();
+        //必须在微信Weixin JSAPI的WeixinJSBridgeReady才能生效
+        document.addEventListener("WeixinJSBridgeReady", function () {
+            document.getElementById('bgMusic').play();
+            document.getElementById('video').play();
+        }, false);
+        var share_title = '亲们，日照港喊你来开会啦！';
+        var share_desc = '说得到，做得到，数字说明一切！';
+        var share_link = location.href;
+        var share_img = location.href.split('index.html')[0] + 'assets/fx.png';
+        //setWxShare(share_title,share_desc,share_link,share_img);
+        function shareFriend(shareTitle,descContent,lineLink) {
+            wx.onMenuShareAppMessage({
+                title: shareTitle,
+                desc: descContent,
+                link: lineLink,
+                imgUrl: share_img,
+                trigger: function (res) {
+                    $('#mcover').hide();
+                },
+                fail: function (res) {
+                    alert(JSON.stringify(res));
+                }
+            });
+        }
+
+        function shareTimeline(shareTitle,descContent,lineLink) {
+            wx.onMenuShareTimeline({
+                title: shareTitle,
+                link: lineLink,
+                imgUrl: share_img,
+                trigger: function (res) {
+                    $('#mcover').hide();
+                },
+                fail: function (res) {
+                    alert(JSON.stringify(res));
+                }
+            });
+        }
+
+        function shareQQ(shareTitle,descContent,lineLink){
+            wx.onMenuShareQQ({
+                title: shareTitle,
+                desc: descContent,
+                link: lineLink,
+                imgUrl: share_img,
+                trigger: function (res) {
+                    $('#mcover').hide();
+                },
+                fail: function (res) {
+                    alert(JSON.stringify(res));
+                }
+            });
+        };
+
+        function shareWeibo(shareTitle,descContent,lineLink){
+            wx.onMenuShareWeibo({
+                title: shareTitle,
+                desc: descContent,
+                link: lineLink,
+                imgUrl: share_img,
+                trigger: function (res) {
+                    $('#mcover').hide();
+                },
+                fail: function (res) {
+                    alert(JSON.stringify(res));
+                }
+            });
+        };
+        $(document).ready(function() {
+            /*
+             while(share_desc == ''){
+             setTimeout(function(){share_desc = $(document).attr("title");},500);
+             }
+             */
+
+            var url = location.href.split('#').toString();
+            $.ajax({
+                url: 'http://inews.p5w.net/wx/sign.php',
+                type: 'post',
+                dataType: 'json',
+                data:{'url':url},
+                error:function(XMLHttpRequest, textStatus, errorThrown){
+
+                },
+                success:function(signPackage){
+                    if(signPackage)	{
+                        var share_appid = signPackage.appId;
+                        var share_nonceStr = signPackage.nonceStr;
+                        var share_signature = signPackage.signature;
+                        var share_timestamp = signPackage.timestamp;
+
+                        wx.config({
+                            debug: false,
+                            appId: share_appid,
+                            timestamp: share_timestamp,
+                            nonceStr: share_nonceStr,
+                            signature: share_signature,
+                            jsApiList: ['onMenuShareTimeline','onMenuShareAppMessage','onMenuShareQQ','onMenuShareWeibo']
+                        });
+
+                        wx.ready(function(){
+
+                            //发送给好友
+                            shareFriend(share_title,share_desc,share_link);
+
+                            //分享到朋友圈
+                            shareTimeline(share_title,share_desc,share_link);
+
+                            //分享给QQ好友
+                            shareQQ(share_title,share_desc,share_link);
+
+                            //分享到微博
+                            shareWeibo(share_title,share_desc,share_link);
+                        });
+
+                    }
+                }
+            })
+        });
+    });
+</script>
+</html>

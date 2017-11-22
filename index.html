@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>回首过去、展望未来，回天新材的2017更精彩！</title>
+</head>
+<body>
+</body>
+<script type="text/javascript" src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+<script>
+    $(function(){
+        function getTransforms(translate3d){
+            return {
+                '-webkit-transform': translate3d,
+                '-moz-transform': translate3d,
+                '-ms-transform':translate3d,
+                'transform': translate3d
+            };
+        }
+        var music = document.getElementById("bgMusic");
+        $("#audioBtn").click(function(){
+            if(music.paused){music.play();
+                $("#audioBtn").removeClass("pause").addClass("play");
+            }else{music.pause();
+                $("#audioBtn").removeClass("play").addClass("pause");
+            }
+        });
+        var sections = $('.section');
+        var translate3d = 'translate3d(0px, 0px, 0px)';
+        $('#qj').fullpage({
+//            sectionsColor: ['#FFFFFF', '#FFFFFF', '#FFFFFF', '#FFFFFF'],
+            continuousVertical: true,
+//            loopBottom:true,
+            afterRender: function(){
+                var effects = sections.eq(0).find('[qj-effect]');
+                for(var j=0;j<effects.length;j++){
+                    effects.eq(j).addClass(effects.eq(j).attr('qj-effect'));
+                }
+            },
+            onLeave: function(index, nextIndex, direction ){
+
+            },
+            afterLoad: function(anchorLink, index){     //anchorLink 是锚链接的名称，index 是序号，从1开始计算
+                if(index===8){          //第八页和第九页用了同一个图
+                    $('.img9-5').hide();
+                }else{
+                    $('.img9-5').show();
+                }
+                if(index==1){
+                    ($("#qj").css(getTransforms(translate3d)));     //循环回到第一页时强制定位页面到指定位置，不然在iphone下会有问题
+                }
+                var i= 0;
+                for(i;i<sections.length;i++){
+                    var effects = sections.eq(i).find('[qj-effect]');
+                    if(i===index-1){
+                        for(var j=0;j<effects.length;j++){
+                            effects.eq(j).addClass(effects.eq(j).attr('qj-effect'));
+                        }
+                    }else{
+                        for(var j=0;j<effects.length;j++) {
+                            effects.eq(j).removeClass(effects.eq(j).attr('qj-effect'));
+                        }
+                    }
+                }
+            }
+        });
+    })
+    //一般情况下，这样就可以自动播放了，但是一些奇葩iPhone机不可以
+    document.getElementById('bgMusic').play();
+    //必须在微信Weixin JSAPI的WeixinJSBridgeReady才能生效
+    document.addEventListener("WeixinJSBridgeReady", function () {
+        document.getElementById('bgMusic').play();
+        document.getElementById('video').play();
+    }, false);
+
+    var docEle = document.documentElement;
+    fn = function() {
+        var width = docEle.clientWidth;
+        if( width < 320 ) {
+            docEle.style.fontSize = 42.6667 + "px";//
+        }
+        /*else if( width < 330 ) {       //  放大iphone5字体大小
+         docEle.style.fontSize = 45 + "px";//
+         }*/
+        else if( width > 750 ) {
+            docEle.style.fontSize = 100 + "px";
+        }
+        else {
+            //以750设计稿宽度为基准设置fontSize:100px;这样保证iPhone6以下是高清
+            docEle.style.fontSize = 100 * (width / 750) + "px";
+        }
+    };
+    var evt = "onorientationchange" in window ? "orientationchange" : "resize";//区分Mobile和PC以加载不同的事件
+    window.addEventListener(evt, fn, false);
+    fn();
+
+    var share_title = '回首过去、展望未来，回天新材的2017更精彩！';
+    var share_desc = '2016年，营业收入11.32亿元，同比增长16%；营业利润9762万元，同比增长61%。';
+    var share_link = location.href;
+    var share_img = location.href.split('index.html')[0] + 'assets/fx.png';
+    function shareFriend(shareTitle,descContent,lineLink) {
+        wx.onMenuShareAppMessage({
+            title: shareTitle,
+            desc: descContent,
+            link: lineLink,
+            imgUrl: share_img,
+            trigger: function (res) {
+                $('#mcover').hide();
+            },
+            fail: function (res) {
+                alert(JSON.stringify(res));
+            }
+        });
+    }
+
+    function shareTimeline(shareTitle,descContent,lineLink) {
+        wx.onMenuShareTimeline({
+            title: shareTitle,
+            link: lineLink,
+            imgUrl: share_img,
+            trigger: function (res) {
+                $('#mcover').hide();
+            },
+            fail: function (res) {
+                alert(JSON.stringify(res));
+            }
+        });
+    }
+
+    function shareQQ(shareTitle,descContent,lineLink){
+        wx.onMenuShareQQ({
+            title: shareTitle,
+            desc: descContent,
+            link: lineLink,
+            imgUrl: share_img,
+            trigger: function (res) {
+                $('#mcover').hide();
+            },
+            fail: function (res) {
+                alert(JSON.stringify(res));
+            }
+        });
+    };
+
+    function shareWeibo(shareTitle,descContent,lineLink){
+        wx.onMenuShareWeibo({
+            title: shareTitle,
+            desc: descContent,
+            link: lineLink,
+            imgUrl: share_img,
+            trigger: function (res) {
+                $('#mcover').hide();
+            },
+            fail: function (res) {
+                alert(JSON.stringify(res));
+            }
+        });
+    };
+    $(document).ready(function() {
+        var url = location.href.split('#').toString();
+        $.ajax({
+            url: 'http://inews.p5w.net/wx/sign.php',
+            type: 'post',
+            dataType: 'json',
+            data: {'url': url},
+            error: function (XMLHttpRequest, textStatus, errorThrown) {
+
+            },
+            success: function (signPackage) {
+                if (signPackage) {
+                    var share_appid = signPackage.appId;
+                    var share_nonceStr = signPackage.nonceStr;
+                    var share_signature = signPackage.signature;
+                    var share_timestamp = signPackage.timestamp;
+
+                    wx.config({
+                        debug: false,
+                        appId: share_appid,
+                        timestamp: share_timestamp,
+                        nonceStr: share_nonceStr,
+                        signature: share_signature,
+                        jsApiList: ['onMenuShareTimeline', 'onMenuShareAppMessage', 'onMenuShareQQ', 'onMenuShareWeibo']
+                    });
+
+                    wx.ready(function () {
+
+                        //发送给好友
+                        shareFriend(share_title, share_desc, share_link);
+
+                        //分享到朋友圈
+                        shareTimeline(share_title, share_desc, share_link);
+
+                        //分享给QQ好友
+                        shareQQ(share_title, share_desc, share_link);
+
+                        //分享到微博
+                        shareWeibo(share_title, share_desc, share_link);
+                    });
+
+                }
+            }
+        });
+    });
+
+</script>
+</html>
