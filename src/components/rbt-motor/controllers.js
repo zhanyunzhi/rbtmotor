@@ -10,6 +10,10 @@ appModule.controller("IndexCtrl",
         $http.get("./data.txt").success(function (data) {
 
         });
+        var swiper = new Swiper('.swiper-container', {
+            pagination: '.swiper-pagination',
+            paginationClickable: true
+        })
     }
 );
 appModule.filter(
