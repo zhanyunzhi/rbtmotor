@@ -64,31 +64,31 @@ module.exports = {
                             limit: 100                //小于1字节的图片打包成base64，超过的用file-loader打包，不能设置为0
                         }
                     },
-                    {
-                        loader: 'img-loader',
-                        options: {
-                            //enabled: process.env.NODE_ENV === 'production',
-                            gifsicle: {
-                                interlaced: false
-                            },
-                            mozjpeg: {
-                                progressive: true,
-                                arithmetic: false
-                            },
-                            optipng: false, // disabled
-                            pngquant: {
-                                floyd: 0.5,
-                                speed: 2,
-                                quality:80
-                            },
-                            svgo: {
-                                plugins: [
-                                    { removeTitle: true },
-                                    { convertPathData: false }
-                                ]
-                            }
-                        }
-                    }
+                    // {
+                    //     loader: 'img-loader',
+                    //     options: {
+                    //         //enabled: process.env.NODE_ENV === 'production',
+                    //         gifsicle: {
+                    //             interlaced: false
+                    //         },
+                    //         mozjpeg: {
+                    //             progressive: true,
+                    //             arithmetic: false
+                    //         },
+                    //         optipng: false, // disabled
+                    //         pngquant: {
+                    //             floyd: 0.5,
+                    //             speed: 2,
+                    //             quality:80
+                    //         },
+                    //         svgo: {
+                    //             plugins: [
+                    //                 { removeTitle: true },
+                    //                 { convertPathData: false }
+                    //             ]
+                    //         }
+                    //     }
+                    // }
                 ]
             },
             {                 //处理MP3 文件，将mp3移动
