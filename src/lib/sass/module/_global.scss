@@ -1,3 +1,7 @@
+
+$primaryC : #3baca5;
+$viewWidth: 1200px;
+
 html, body {
   position: relative;
   height: 100%;
@@ -24,4 +28,18 @@ input[type="submit"],input[type="reset"],input[type="button"],button{
 }
 .clear-fix{
   @include clearfix;
+}
+.btn-small{
+  background-color:$primaryC;
+  color:$white;
+  padding:4px 10px;
+  font-size:12px;
+  @include border-radius(2px);
+}
+.btn-normal{
+  background-color:$primaryC;
+  color:$white;
+  padding:6px 16px;
+  font-size:14px;
+  @include border-radius(2px);
 }

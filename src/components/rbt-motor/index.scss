@@ -6,8 +6,7 @@
 @import "../../lib/sass/module/_global";
 @import "../../lib/css/swiper.min.css";
 
-$primaryC : #3baca5;
-//��������
+//导航模块
 nav{
   height:75px;
   width:1000px;
@@ -77,12 +76,19 @@ nav{
   width: 12px;
   height: 12px;
 }
-//��Ʒģ��
+//我的产品模块
 .product{
   padding:100px 0;
   background-color: $whitef1;
+  min-width:$viewWidth;
+  h2{
+    margin:0 auto 40px;
+    text-align: center;
+    width: $viewWidth;
+    color: $gray6;
+  }
   ul{
-    width:1200px;
+    width:$viewWidth;
     margin:0 auto;
     @include clearfix();
     li{
@@ -114,6 +120,148 @@ nav{
         -webkit-box-orient: vertical;
         -webkit-line-clamp: 2;*/
       }
+    }
+  }
+}
+//我们的团队模块
+.team{
+  padding:100px 0;
+  background-color: $white;
+  min-width:$viewWidth;
+  h2{
+    margin:0 auto 40px;
+    text-align: center;
+    width: $viewWidth;
+    color: $gray6;
+  }
+  ul{
+    width:$viewWidth;
+    margin:0 auto;
+    @include clearfix();
+    li{
+      @include float();
+      width:270px;
+      margin:0 15px;
+      position:relative;
+      img{
+        width:100%;
+      }
+      .team-intro{
+        position:absolute;
+        width:100%;
+        height:100%;
+        background-color:rgba(59, 172, 165, .7);
+        color:$black12;
+        padding:0 10px 6px;
+        @include box-sizing(border-box);
+        h3,h4{
+          text-align:center;
+        }
+        h3{
+          margin-top:16px;
+          margin-bottom:8px;
+        }
+        p{
+          font-size:12px;
+          margin-bottom:0;
+          padding-bottom:12px;
+          overflow:hidden;
+        }
+      }
+    }
+  }
+}
+//关于我们模块
+.about{
+  padding:100px 0;
+  background-color: $white;
+  min-width:$viewWidth;
+  .about-container{
+    width:$viewWidth;
+    margin:0 auto;
+    @include clearfix();
+  }
+  .about-l{
+    @include float(left);
+    width:700px;
+    img{
+      width:100%;
+    }
+  }
+  .about-r{
+    @include float(right);
+    width:440px;
+    h2{
+      color: $gray6;
+      display: inline-block;
+      padding-bottom: 6px;
+      border-bottom: 4px solid $primaryC;
+    }
+    p{
+      margin: 20px 0;
+      color:$grayDark;
+      font-size:13px;
+      line-height: 21px;
+      overflow: hidden;
+    }
+  }
+}
+
+//联系我们模块
+.contact{
+  padding:100px 0;
+  background-color: $whitef1;
+  min-width:$viewWidth;
+  .contact-container{
+    width:$viewWidth;
+    margin:0 auto;
+    @include clearfix();
+  }
+  .contact-l{
+    @include float(left);
+    width:440px;
+    h2{
+      color: $gray6;
+      display: inline-block;
+      padding-bottom: 6px;
+      border-bottom: 4px solid $primaryC;
+    }
+    p{
+      margin: 20px 0;
+      color:$grayDark;
+      font-size:13px;
+      line-height: 21px;
+      overflow: hidden;
+    }
+  }
+  .contact-r{
+    @include float(right);
+    width:700px;
+    img{
+      width:100%;
+    }
+  }
+}
+//底部
+footer{
+  padding:50px 0 0;
+  background-color: #141414;
+  color:$white;
+  .footer-contact{
+    width:$viewWidth;
+    margin:0 auto 30px;
+    color:#7d7d7d;
+    text-align:center;
+  }
+  .copy-right{
+    line-height:40px;
+    border-top:1px solid #202020;
+    color:$grayDarker;
+    font-size:12px;
+    text-align:center;
+    span{
+      margin-right:10px;
+      color:#7d7d7d;
     }
   }
 }

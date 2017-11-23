@@ -10,7 +10,7 @@
 <body ng-controller="IndexCtrl" ng-cloak>
     <div ng-include="'nav.html'"></div>         <!--公共头部-->
     <!-- Swiper banner图-->
-    <div class="swiper-container">
+    <div class="swiper-container" hidden>
         <div class="swiper-wrapper">
             <div class="swiper-slide">
                 <img src="../../assets/rbt-motor/banner1.jpg" />
@@ -28,24 +28,91 @@
         <!-- Add Pagination 导航的小圆点-->
         <div class="swiper-pagination"></div>
     </div>
-    <section class="product">
+    <section class="product">           <!-- 产品介绍模块 -->
+        <h2>我们的产品</h2>
         <ul>
             <li>
                 <img src="../../assets/rbt-motor/product1.jpg" />
                 <h4>产品名称1</h4>
-                <p>产品介绍（在首页这边取介绍的一部分，在产品页再展示详细的介绍）</p>
+                <p>产品介绍（在首页这边取介绍的一部分单行）</p>
+                <a href="###" class="btn-small">查看详情</a>
             </li>
             <li>
                 <img src="../../assets/rbt-motor/product2.jpg" />
                 <h4>产品名称2</h4>
                 <p>产品介绍（在首页这边取介绍的一部分，在产品页再展示详细的介绍）（在首页这边取介绍的一部分，在产品页再展示详细的介绍）</p>
+                <a href="###" class="btn-small">查看详情</a>
             </li>
             <li>
                 <img src="../../assets/rbt-motor/product3.jpg" />
                 <h4>产品名称3</h4>
                 <p>产品介绍（在首页这边取介绍的一部分，在产品页再展示详细的介绍）</p>
+                <a href="###" class="btn-small">查看详情</a>
             </li>
         </ul>
     </section>
+    <section class="about" hidden>           <!-- 关于我们模块 -->
+        <div class="about-container">
+          <div class="about-l">
+              <img src="../../assets/rbt-motor/product1.jpg" />
+          </div>
+          <div class="about-r">
+              <h2>关于我们</h2>
+              <p>写一堆关于我们的介绍不过有高度限制，超过了就不在这里显示了写一堆关于我们的介绍不过有高度限制，超过了就不在这里显示了写一堆关于我们的介绍不过有高度限制，超过了就不在这里显示了写一堆关于我们的介绍不过有高度限制，超过了就不在这里显示了写一堆关于我们的介绍不过有高度限制，超过了就不在这里显示了写一堆关于我们的介绍不过有高度限制，超过了就不在这里显示了</p>
+              <a href="###" class="btn-normal">查看更多</a>
+          </div>
+      </div>
+    </section>
+    <section class="team">          <!-- 我们的团队模块 -->
+        <h2>我们的团队</h2>
+        <ul>
+            <li>
+                <img src="../../assets/rbt-motor/product1.jpg" />
+                <div class="team-intro">
+                    <h3>王老五</h3>
+                    <h4>XXX工程师</h4>
+                    <p>人物简介，不能写太多太多字介绍不过有高度限制，超过了就不在这里显示了写就不在这里显示了写就不在这里显示了写一堆关于我们的介绍不过有高度限制，超过了就不在这里显示了写一堆关于我们的vjkhfjdhfjd介绍不过有高度限制，超过了就不在这里显过了就不在这里显示了写就不在这里显示了写就不在这里显示了写一堆关于我们的介绍不过有高度限制，超过了就不在这里显示了写一堆关于我们的vjkhfjdhfjd介绍不过有高度限制，超过了就不在这里显示了写一堆关于我们的介绍不过有高度限制，超过了就不在这里</p>
+                </div>
+            </li>
+            <li>
+                <img src="../../assets/rbt-motor/product2.jpg" />
+            </li>
+            <li>
+                <img src="../../assets/rbt-motor/product3.jpg" />
+            </li>
+            <li>
+                <img src="../../assets/rbt-motor/product2.jpg" />
+            </li>
+        </ul>
+        
+    </section>
+    <section class="contact" hidden>           <!-- 联系我们模块 -->
+        <div class="contact-container">
+          <div class="contact-l">
+              <h2>联系我们</h2>
+              <p>电话：0755-12345678</p>
+              <p>地址：深圳市XXXXXXXX</p>
+              <p>公司名称：深圳市XXXXXXXX</p>
+              <p>电话：0755-12345678</p>
+          </div>
+          <div class="contact-r">
+              <img src="../../assets/rbt-motor/product1.jpg" />
+          </div>
+      </div>
+    </section>
+    <footer>        <!-- 底部 -->
+      <div class="footer-contact">
+          <h3>深圳市瑞必拓科技有限公司</h3>
+          <p>电话：0755-12345678</p>
+          <p>邮箱：12345678@qq.com</p>
+          <p>地址：深圳市XXXXXXXX</p>
+      </div>
+      <div class="copy-right">
+          <span>Copyright ©深圳前沿科技网络有限公司</span>
+          <span>深圳前沿科技教育培训有限公司</span>
+          <span>粤ICP备16115062号-1</span>
+          <span>粤ICP备16115062号-1</span>
+      </div>
+    </footer>  
 </body>
 </html>
