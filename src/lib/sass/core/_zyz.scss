@@ -31,15 +31,6 @@
     #{$name}: $px * 2;
   }*/
 }
-@mixin fontSize($size){
-  font-size: $size;
-  [data-dpr="2"] {
-    font-size: $size * 2;
-  }
-  [data-dpr="3"] {
-    font-size:  $size * 3;
-  }
-}
 //空心箭头
 %arrow-basic{
   content:"";
@@ -97,7 +88,7 @@
 }
 //水平居中
 @mixin hor-center {
-  @include flex();
+  @include my-display-flex();
   -webkit-box-align: center;
   -moz-align-items: center;
   -webkit-align-items: center;

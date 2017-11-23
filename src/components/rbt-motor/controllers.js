@@ -7,12 +7,15 @@ var appModule = angular.module("ngApp",[]);
 appModule.controller("IndexCtrl",
     function($scope, $http) {
         //url是相对于我们的html文件的
-        $http.get("./data.txt").success(function (data) {
+        /*$http.get("./data.txt").success(function (data) {
 
-        });
+        });*/
         var swiper = new Swiper('.swiper-container', {
             pagination: '.swiper-pagination',
-            paginationClickable: true
+            paginationClickable: true,
+            autoplay: 3000,
+            speed: 700,
+            loop: true
         })
     }
 );

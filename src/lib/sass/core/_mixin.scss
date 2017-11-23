@@ -1,37 +1,16 @@
 @charset "UTF-8";
-//-----------------------------------------------------  
+//-----------------------------------------------------
 // mixin scss
 // 包括常用的mixin，%及@function
 // mixin，通过@include调用，样式通过拷贝的方式使用，尤其适用于传递参数
-// %，通过@extend调用，样式通过组合申明的方式使用，适用于不传参数的代码片段  
+// %，通过@extend调用，样式通过组合申明的方式使用，适用于不传参数的代码片段
 // @function，返回一个值，用于调用
 //-----------------------------------------------------
 
 // mixin & %
 // 既定义了mixin也定义了%，根据需求使用@include或@extend调用
 //-----------------------------------------------------
-//fontSize  不同dpr下的文字做相应适配    这是根据设备的dpr判断
-@mixin fontSize($size){
-  font-size: $size;
-  @media only screen and (-webkit-min-device-pixel-ratio: 2) {
-    font-size: $size * 2;
-  }
-  @media only screen and (-webkit-min-device-pixel-ratio: 3) {
-    font-size: $size * 3;
-  }
-}
-//fontSize2  不同dpr下的文字做相应适配,这里的是更加html标签内部的data-dpr属性判断
-@mixin fontSize2($name, $size){
-  #{$name}{
-    font-size: $size * 1; // 默认写上dpr为1的fontSize
-  }
-  [data-dpr="2"] #{$name}{
-    font-size: $size * 2;
-  }
-  [data-dpr="3"] #{$name}{
-    font-size: $size * 3;
-  }
-}
+
 // inline-block
 // ie6-7 *display: inline;*zoom:1;
 @mixin inline-block {
@@ -52,6 +31,27 @@
 }
 %center-block{
   @include center-block;
+}
+// flex
+// flex布局
+@mixin my-display-flex {
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+}
+%my-display-flex{
+  @include my-display-flex;
+}
+// inline-flex
+// inline-flex布局   行内元素使用
+@mixin inline-flex {
+  display: inline-flex;
+  display: -webkit-inline-flex;
+}
+%inline-flex{
+  @include inline-flex;
 }
 
 // float left & right
@@ -126,7 +126,7 @@
   text-shadow: none;
   border:0 none;
   color: transparent; //2
-  @if $lte7{ 
+  @if $lte7{
     _overflow:hidden; //3
     _font-size: 10px; //3
     _line-height: $height; //3
@@ -141,7 +141,7 @@
 %ellipsis-basic{
   overflow: hidden;
   text-overflow: ellipsis;
-  white-space: nowrap; 
+  white-space: nowrap;
 }
 @mixin ellipsis($width:100%) {
   @extend %ellipsis-basic;
@@ -173,17 +173,17 @@
     border-bottom:$size solid $borderColor;
     border-left:$size dashed transparent;
     border-right:$size dashed transparent;
-  } 
+  }
   @else if $direction == right {
     border-left:$size solid $borderColor;
     border-top:$size dashed transparent;
     border-bottom:$size dashed transparent;
-  } 
+  }
   @else if $direction == bottom {
     border-top:$size solid $borderColor;
     border-left:$size dashed transparent;
     border-right:$size dashed transparent;
-  } 
+  }
   @else if $direction == left {
     border-right:$size solid $borderColor;
     border-top:$size dashed transparent;
@@ -220,7 +220,7 @@
 @mixin horizontal-line($border:1px dashed $gray, $padding:10px){
   border-bottom:$border;
   padding-top:$padding;
-  padding-bottom:$padding;  
+  padding-bottom:$padding;
 }
 %horizontal-line{
   @include horizontal-line;
@@ -253,7 +253,7 @@
   }
 }
 
-// Retina images. 
+// Retina images.
 // @include image-2x("../images/img-2x.png", 200px, 200px);
 // Use with care - http://37signals.com/svn/posts/3271-easy-retina-ready-images-using-scss
 @mixin image-2x($url, $width, $height) {
@@ -302,7 +302,7 @@
 //-------------------------
 // 白色，由半透明到全透明
 %gradient-linear-light {
-  // IE9 SVG, needs conditional override of 'filter' to 'none' 
+  // IE9 SVG, needs conditional override of 'filter' to 'none'
   background-image: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIwJSIgeTI9IjEwMCUiPgogICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iI2ZmZmZmZiIgc3RvcC1vcGFjaXR5PSIwLjMiLz4KICAgIDxzdG9wIG9mZnNldD0iNDYlIiBzdG9wLWNvbG9yPSIjZmZmZmZmIiBzdG9wLW9wYWNpdHk9IjAiLz4KICA8L2xpbmVhckdyYWRpZW50PgogIDxyZWN0IHg9IjAiIHk9IjAiIHdpZHRoPSIxIiBoZWlnaHQ9IjEiIGZpbGw9InVybCgjZ3JhZC11Y2dnLWdlbmVyYXRlZCkiIC8+Cjwvc3ZnPg==);
   @include gradient-vertical(rgba(255,255,255,0.3),rgba(255,255,255,0));
   @if $filter{
@@ -331,7 +331,7 @@
 
 
 //function
-//-----------------------------------------------------  
+//-----------------------------------------------------
 
 // px转em
 @function pxToEm($px, $base: $baseFontSize) {
@@ -430,14 +430,14 @@
 @mixin simple-text($borderColorFocus: #52a8ec){
   @extend %simple-form-basic;
   height: 18px;
-  
+
   @include transition(border linear 0.2s, box-shadow linear 0.2s);
   @include box-shadow(inset 0 1px 3px rgba(0, 0, 0, 0.1));
 
   &:focus{
     border-color: rgba($borderColorFocus, 0.8);
     @include box-shadow(inset 0 1px 3px rgba(0, 0, 0, 0.1), 0 0 8px rgba($borderColorFocus, 0.6));
-  }  
+  }
 }
 %simple-text{
   @include simple-text;
@@ -559,80 +559,3 @@
   border-radius:$height / 2 $height / 2;
 }
 
-@mixin arrow-right($color,$size){
-  content:"";
-  width: $size;
-  height: $size;
-  border-top: 1px solid $color;  /* 左边框的宽 */
-  border-right: 1px solid $color; /* 右边框的宽 */
-  display: inline-block;
-  @include rotate(45deg);
-  //transform: rotate(45deg);
-}
-@mixin arrow-left($color,$size){
-  content:"";
-  width: $size;
-  height: $size;
-  border-top: 1px solid $color;  /* 左边框的宽 */
-  border-right: 1px solid $color; /* 右边框的宽 */
-  display: inline-block;
-  @include rotate(-135deg);
-  //transform: rotate(-135deg);
-}
-@mixin arrow-up($color,$size){
-  content:"";
-  width: $size;
-  height: $size;
-  border-top: 1px solid $color;  /* 左边框的宽 */
-  border-right: 1px solid $color; /* 右边框的宽 */
-  display: inline-block;
-  @include rotate(-45deg);
-  //transform: rotate(-135deg);
-}
-@mixin arrow-down($color,$size){
-  content:"";
-  width: $size;
-  height: $size;
-  border-top: 1px solid $color;  /* 左边框的宽 */
-  border-right: 1px solid $color; /* 右边框的宽 */
-  display: inline-block;
-  @include rotate(135deg);
-  //transform: rotate(-135deg);
-}
-/*实心箭头*/
-@mixin triangle-right($color,$size){
-  content:"";
-  width: 0;
-  height: 0;
-  border-top: $size solid transparent;
-  border-left: $size * 2 solid $color;
-  border-bottom: $size solid transparent;
-  display: inline-block;
-}
-@mixin triangle-left($color,$size){
-  content:"";
-  width: 0;
-  height: 0;
-  border-top: $size solid transparent;
-  border-right: $size * 2 solid $color;
-  border-bottom: $size solid transparent;
-  display: inline-block;
-}
-@mixin triangle-top($color,$size){
-  content:"";
-  width: 0;
-  height: 0;
-  border-left: $size solid transparent;
-  border-bottom: $size * 2 solid $color;
-  border-right: $size solid transparent;
-  display: inline-block;
-}
-@mixin triangle-bottom($color,$size){
-  content:"";
-  width: 0;
-  height: 0;
-  border-left: $size solid transparent;
-  border-top: $size * 2 solid $color;
-  border-right: $size solid transparent;
-  display: inline-block;
-}

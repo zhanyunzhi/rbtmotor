@@ -114,9 +114,9 @@ module.exports = {
                 return order1 - order2;
             }
         }),
-        /*new htmlWebpackPlugin({
-            template: 'src/components/henanjdr/mlist.html',
-            filename: 'mlist.html',
+        new htmlWebpackPlugin({
+            template: 'src/components/rbt-motor/nav.html',
+            filename: 'nav.html',
             inject: 'head',
             chunksSortMode: function(chunk1, chunk2){           //引入多个js的时候，排序
                 var order = ['vendor', 'common', 'public', 'index'];
@@ -124,7 +124,7 @@ module.exports = {
                 var order2 = order.indexOf(chunk2.names[0]);
                 return order1 - order2;
             }
-        }),*/
+        }),
         //new webpack.ProvidePlugin({common: 'common'}),
         new ExtractTextPlugin('css/style.css')              //单独打包css文件,所有的css文件都会打包进这里
 ]

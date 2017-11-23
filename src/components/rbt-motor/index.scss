@@ -2,30 +2,53 @@
 @import "../../lib/sass/core/_css3";
 @import "../../lib/sass/core/_mixin";
 @import "../../lib/sass/core/_media-queries";
-@import "../../lib/sass/animate/_fade";
-@import "../../lib/sass/animate/_bounce";
-@import "../../lib/sass/animate/_slide";
-@import "../../lib/sass/animate/_rotate";
-@import "../../lib/sass/animate/_flip";
-@import "../../lib/sass/animate/_special";
-@import "../../lib/sass/animate/_attention-seekers";
-@import "../../lib/sass/animate/_zoom";
-@import "../../lib/sass/animate/_lightspeed";
-@import "../../lib/sass/animate/_tiny";
-@import "../../lib/sass/animate/_tiny-flash";
+@import "../../lib/sass/core/_zyz";
+@import "../../lib/sass/module/_global";
 @import "../../lib/css/swiper.min.css";
 
-html, body {
+$primaryC : #3baca5;
+//顶部导航
+nav{
+  height:75px;
+  width:1000px;
+  margin: 0 auto;
   position: relative;
-  height: 100%;
+  .logo{
+    position: absolute;
+    left:0;
+    top:10px;
+    width:150px;
+  }
+  .navigator{
+    @include clearfix();
+    ul{
+      line-height:65px;
+      padding-top:10px;
+      text-align: center;
+      @include float(right);
+      font-size:16px;
+      li{
+        @include float();
+        margin:0 20px;
+        a{
+          color: $black12;
+          cursor: pointer;
+        }
+        a:hover{
+          color:$primaryC;
+        }
+      }
+      .active{
+        a{
+          color:$primaryC;
+          cursor: pointer;
+        }
+      }
+    }
+  }
 }
-body {
-  font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
-  font-size: 14px;
-  color:#000;
-  margin: 0;
-  padding: 0;
-}
+
+
 .swiper-container {
   width: 100%;
 }
@@ -45,5 +68,52 @@ body {
   align-items: center;
   img{
     width:100%;
+  }
+}
+.swiper-pagination-bullet-active{
+  background-color: $primaryC;
+}
+.swiper-pagination-bullet {
+  width: 12px;
+  height: 12px;
+}
+//产品模块
+.product{
+  padding:100px 0;
+  background-color: $whitef1;
+  ul{
+    width:1200px;
+    margin:0 auto;
+    @include clearfix();
+    li{
+      @include float();
+      width:300px;
+      margin:0 20px;
+      background-color: $white;
+      padding:30px;
+      box-shadow: 0 0 3px $gray;
+      img{
+        width:300px;
+      }
+      h4{
+        padding-top:20px;
+        padding-bottom:10px;
+        text-align: center;
+        color:$gray7;
+        font-size: 16px;
+        font-weight: normal;
+      }
+      p{
+        margin: 0 0 10px;
+        color:$grayDark;
+        font-size:13px;
+        line-height: 21px;
+        height:42px;
+        overflow: hidden;
+        /*text-overflow: ellipsis;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 2;*/
+      }
+    }
   }
 }
