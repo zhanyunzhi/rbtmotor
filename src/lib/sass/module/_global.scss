@@ -4,6 +4,7 @@ $viewWidth: 1200px;
 
 html, body {
   position: relative;
+  min-width:$viewWidth;
   height: 100%;
   margin: 0;
   padding: 0;
@@ -29,17 +30,34 @@ input[type="submit"],input[type="reset"],input[type="button"],button{
 .clear-fix{
   @include clearfix;
 }
-.btn-small{
+.btn{
+  @include border-radius(4px);
+  border:1px solid $primaryC;
   background-color:$primaryC;
   color:$white;
+  display: inline-block;;
+  @include transition(all 0.3s ease);
+  &:hover{
+    color:$grayDark;
+    border:1px solid $grayDark;
+    background-color: $white;
+  }
+}
+.btn-small{
   padding:4px 10px;
   font-size:12px;
-  @include border-radius(2px);
 }
 .btn-normal{
-  background-color:$primaryC;
-  color:$white;
   padding:6px 16px;
   font-size:14px;
-  @include border-radius(2px);
+}
+.btn-large{
+  width:120px;
+  text-align: center;
+  line-height: 40px;
+  font-size:16px;
+}
+.product-more{
+  margin:50px auto 0;
+  display: block;
 }

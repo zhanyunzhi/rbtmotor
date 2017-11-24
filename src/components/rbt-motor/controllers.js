@@ -10,12 +10,21 @@ appModule.controller("IndexCtrl",
         /*$http.get("./data.txt").success(function (data) {
 
         });*/
-        var swiper = new Swiper('.swiper-container', {
+        var swiper = new Swiper('.nav-swiper-container', {
             pagination: '.swiper-pagination',
             paginationClickable: true,
             autoplay: 3000,
             speed: 700,
             loop: true
+        })
+        var swiperS = new Swiper('.solution-swiper-container', {
+            slidesPerView: 3,
+            spaceBetween: 30,
+            pagination: '.swiper-pagination',
+            paginationClickable: true,
+            autoplay: 2500,
+            speed: 500,
+            loop: true,
         })
     }
 );
