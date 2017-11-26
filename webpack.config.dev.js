@@ -6,12 +6,12 @@ var ExtractTextPlugin = require("extract-text-webpack-plugin");         // 引�
 module.exports = {
     entry: {
         vendor: ['./src/lib/js/jquery-1.8.3.min.js','./src/lib/js/swiper.js'],             //jquery,fullPage第三方插件打包到一起        因为没有模块化，所以只能原样引入,'./src/lib/js/jquery.fullPage.js','./src/lib/js/jquery.imgpreload.js'
-        //fullPage: './src/js/jquery.fullPage.min.js',        //fullPage      因为没有模块化，所以只能原样引入
+        //common: './src/lib/js/angular.min.js',        //fullPage      因为没有模块化，所以只能原样引入
         index: './src/index.js'           //入口文件1
     },
     output: {
         path: path.resolve(__dirname,'dist'),
-        filename: 'js/[name].js',                   //name对应entry里面的属性名，chunkhash对应各自生成的hash
+        filename: 'js/[name].[chunkhash:6].js',                   //name对应entry里面的属性名，chunkhash对应各自生成的hash
     },
     devServer: {            //热更新配置
         port: 3002,
@@ -104,7 +104,7 @@ module.exports = {
     },
     plugins: [
         new htmlWebpackPlugin({
-            template: 'src/components/rbt-motor/index.html',
+            template: 'src/components/rbt-motor/index.html',    //首页
             filename: 'index.html',
             inject: 'head',
             chunksSortMode: function(chunk1, chunk2){           //引入多个js的时候，排序
@@ -115,8 +115,32 @@ module.exports = {
             }
         }),
         new htmlWebpackPlugin({
-            template: 'src/components/rbt-motor/nav.html',
+            template: 'src/components/rbt-motor/nav.html',      //导航的公共页
             filename: 'nav.html',
+            inject: 'head',
+            chunks: [],
+            chunksSortMode: function(chunk1, chunk2){           //引入多个js的时候，排序
+                var order = ['vendor', 'common', 'public', 'index'];
+                var order1 = order.indexOf(chunk1.names[0]);
+                var order2 = order.indexOf(chunk2.names[0]);
+                return order1 - order2;
+            }
+        }),
+        new htmlWebpackPlugin({
+            template: 'src/components/rbt-motor/footer.html',      //底部的公共页
+            filename: 'footer.html',
+            inject: 'head',
+            chunks: [],
+            chunksSortMode: function(chunk1, chunk2){           //引入多个js的时候，排序
+                var order = ['vendor', 'common', 'public', 'index'];
+                var order1 = order.indexOf(chunk1.names[0]);
+                var order2 = order.indexOf(chunk2.names[0]);
+                return order1 - order2;
+            }
+        }),
+        new htmlWebpackPlugin({
+            template: 'src/components/rbt-motor/product.html',      //产品详情页
+            filename: 'product.html',
             inject: 'head',
             chunksSortMode: function(chunk1, chunk2){           //引入多个js的时候，排序
                 var order = ['vendor', 'common', 'public', 'index'];
@@ -126,6 +150,6 @@ module.exports = {
             }
         }),
         //new webpack.ProvidePlugin({common: 'common'}),
-        new ExtractTextPlugin('css/style.css')              //单独打包css文件,所有的css文件都会打包进这里
+        new ExtractTextPlugin('css/style.[hash:6].css')              //单独打包css文件,所有的css文件都会打包进这里
 ]
 }

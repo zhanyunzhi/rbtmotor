@@ -117,7 +117,7 @@ var appModule = angular.module("ngApp", []); /**
 appModule.controller("IndexCtrl", function ($scope, $http) {
     //url是相对于我们的html文件的
     /*$http.get("./data.txt").success(function (data) {
-      });*/
+     });*/
     var swiper = new Swiper('.nav-swiper-container', {
         pagination: '.swiper-pagination',
         paginationClickable: true,
@@ -132,7 +132,7 @@ appModule.controller("IndexCtrl", function ($scope, $http) {
         paginationClickable: true,
         autoplay: 2500,
         speed: 500,
-        loop: true
+        loop: false
     });
 });
 appModule.filter('toTrusted', ['$sce', function ($sce) {

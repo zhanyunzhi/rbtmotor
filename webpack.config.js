@@ -9,11 +9,12 @@ module.exports = {
         vendor: ['./src/lib/js/jquery-1.8.3.min.js','./src/lib/js/swiper.js'],             //jquery,fullPage第三方插件打包到一起        因为没有模块化，所以只能原样引入,'./src/lib/js/jquery.fullPage.min.js','./src/lib/js/jquery.imgpreload.js'
         //fullPage: './src/js/jquery.fullPage.min.js',        //fullPage      因为没有模块化，所以只能原样引入
         //public: './src/lib/js/angular.min.js',        //angular      因为没有模块化，所以只能原样引入
+        //common: './src/lib/js/angular.min.js',
         index: './src/index.js'           //入口文件1
     },
     output: {
         path: path.resolve(__dirname,'dist'),
-        filename: 'js/[name].js',                   //name对应entry里面的属性名，chunkhash对应各自生成的hash
+        filename: 'js/[name].[chunkhash:6].js',                   //name对应entry里面的属性名，chunkhash对应各自生成的hash
     },
     module: {
         rules: [
@@ -62,31 +63,31 @@ module.exports = {
                             limit: 1                //小于1字节的图片打包成base64，超过的用file-loader打包，不能设置为0
                         }
                     },
-                    {
-                        loader: 'img-loader',
-                        options: {
-                            //enabled: process.env.NODE_ENV === 'production',
-                            gifsicle: {
-                                interlaced: false
-                            },
-                            mozjpeg: {
-                                progressive: true,
-                                arithmetic: false
-                            },
-                            optipng: false, // disabled
-                            pngquant: {
-                                floyd: 0.5,
-                                speed: 2,
-                                quality:80
-                            },
-                            svgo: {
-                                plugins: [
-                                    { removeTitle: true },
-                                    { convertPathData: false }
-                                ]
-                            }
-                        }
-                    }
+                    // {
+                    //     loader: 'img-loader',
+                    //     options: {
+                    //         //enabled: process.env.NODE_ENV === 'production',
+                    //         gifsicle: {
+                    //             interlaced: false
+                    //         },
+                    //         mozjpeg: {
+                    //             progressive: true,
+                    //             arithmetic: false
+                    //         },
+                    //         optipng: false, // disabled
+                    //         pngquant: {
+                    //             floyd: 0.5,
+                    //             speed: 2,
+                    //             quality:80
+                    //         },
+                    //         svgo: {
+                    //             plugins: [
+                    //                 { removeTitle: true },
+                    //                 { convertPathData: false }
+                    //             ]
+                    //         }
+                    //     }
+                    // }
                 ]
             },
             {                 //处理MP3 文件，将mp3移动
@@ -102,7 +103,7 @@ module.exports = {
     },
     plugins: [
         new htmlWebpackPlugin({
-            template: 'src/components/rbt-motor/index.html',
+            template: 'src/components/rbt-motor/index.html',  //首页
             filename: 'index.html',
             inject: 'head',
             minify: {               //压缩html文件
@@ -118,9 +119,48 @@ module.exports = {
             }
         }),
         new htmlWebpackPlugin({
-            template: 'src/components/rbt-motor/nav.html',
+            template: 'src/components/rbt-motor/nav.html',  //导航的公共页
             filename: 'nav.html',
             inject: 'head',
+            chunks: [],         //插入到模板中的chunks，这里因为是公用模块，所以不需要引入chunk
+            minify: {               //压缩html文件
+                removeComments: true,      //移除备注
+                collapseWhitespace: true,    //移除空格
+                minifyJS: true              //将html中的js也压缩
+            },
+            chunksSortMode: function(chunk1, chunk2){           //引入多个js的时候，排序
+                var order = ['vendor', 'common', 'public', 'index'];
+                var order1 = order.indexOf(chunk1.names[0]);
+                var order2 = order.indexOf(chunk2.names[0]);
+                return order1 - order2;
+            }
+        }),
+        new htmlWebpackPlugin({
+            template: 'src/components/rbt-motor/footer.html',      //底部的公共页
+            filename: 'footer.html',
+            inject: 'head',
+            chunks: [],
+            minify: {               //压缩html文件
+                removeComments: true,      //移除备注
+                collapseWhitespace: true,    //移除空格
+                minifyJS: true              //将html中的js也压缩
+            },
+            chunksSortMode: function(chunk1, chunk2){           //引入多个js的时候，排序
+                var order = ['vendor', 'common', 'public', 'index'];
+                var order1 = order.indexOf(chunk1.names[0]);
+                var order2 = order.indexOf(chunk2.names[0]);
+                return order1 - order2;
+            }
+        }),
+        new htmlWebpackPlugin({
+            template: 'src/components/rbt-motor/product.html',      //产品详情页
+            filename: 'product.html',
+            inject: 'head',
+            minify: {               //压缩html文件
+                removeComments: true,      //移除备注
+                collapseWhitespace: true,    //移除空格
+                minifyJS: true              //将html中的js也压缩
+            },
             chunksSortMode: function(chunk1, chunk2){           //引入多个js的时候，排序
                 var order = ['vendor', 'common', 'public', 'index'];
                 var order1 = order.indexOf(chunk1.names[0]);
@@ -133,7 +173,7 @@ module.exports = {
                 warnings: false
             }
         }),*/
-        new ExtractTextPlugin('css/style.css'),              //单独打包css文件,所有的css文件都会打包进这里
+        new ExtractTextPlugin('css/style.[hash:6].css'),              //单独打包css文件,所有的css文件都会打包进这里
         new OptimizeCssAssetsPlugin({                   //压缩css文件
             assetNameRegExp: /\.css$/g,
             cssProcessor: require('cssnano'),

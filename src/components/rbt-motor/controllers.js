@@ -24,7 +24,7 @@ appModule.controller("IndexCtrl",
             paginationClickable: true,
             autoplay: 2500,
             speed: 500,
-            loop: true,
+            loop: false,
         })
     }
 );
