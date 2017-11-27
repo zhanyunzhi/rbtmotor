@@ -3,6 +3,8 @@
  */
 //import tpl from './index.html';          //引入模板
 import './index.scss';                   //引入sass文件
+import './about.scss';                   //引入sass文件
+import './contact.scss';                   //引入sass文件
 import './controllers.js';                   //引入controller文件
 //import '../../lib/js/swiper.min.js';                   //引入swiper文件
 function index() {

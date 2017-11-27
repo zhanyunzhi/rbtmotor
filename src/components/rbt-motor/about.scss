@@ -1,0 +1,49 @@
+@import "../../lib/sass/core/_setting";
+@import "../../lib/sass/core/_css3";
+@import "../../lib/sass/core/_mixin";
+@import "../../lib/sass/core/_media-queries";
+@import "../../lib/sass/core/_zyz";
+@import "../../lib/sass/module/_global";
+@import "../../lib/css/swiper.min.css";
+//关于我们页面
+.about-detail{
+  .top-img{
+    display: block;
+  }
+  section{
+    width:$viewWidth;
+    margin:0 auto;
+    .top-title{
+      margin-top:80px;
+      margin-bottom:80px;
+      height: 45px;
+      background-color: #363636;
+      text-align: center;
+      //position: relative;
+      span{
+        color:$white;
+        background-color: $primaryC;
+        display: inline-block;
+        width:130px;
+        position: absolute;
+        margin-left:-65px;
+        line-height:47px;
+        margin-top:-2px;
+      }
+    }
+    .content{
+      margin-bottom:60px;
+      h2{
+        text-align: center;
+      }
+      .description{
+        font-size:16px;
+        text-align: center;
+        margin-bottom:30px;
+      }
+      p{
+        line-height:22px;
+      }
+    }
+  }
+}

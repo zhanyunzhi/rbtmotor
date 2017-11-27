@@ -139,8 +139,30 @@ module.exports = {
             }
         }),
         new htmlWebpackPlugin({
-            template: 'src/components/rbt-motor/product.html',      //产品详情页
+            template: 'src/components/rbt-motor/product.html',      //产品列表页
             filename: 'product.html',
+            inject: 'head',
+            chunksSortMode: function(chunk1, chunk2){           //引入多个js的时候，排序
+                var order = ['vendor', 'common', 'public', 'index'];
+                var order1 = order.indexOf(chunk1.names[0]);
+                var order2 = order.indexOf(chunk2.names[0]);
+                return order1 - order2;
+            }
+        }),
+        new htmlWebpackPlugin({
+            template: 'src/components/rbt-motor/about.html',      //关于我们
+            filename: 'about.html',
+            inject: 'head',
+            chunksSortMode: function(chunk1, chunk2){           //引入多个js的时候，排序
+                var order = ['vendor', 'common', 'public', 'index'];
+                var order1 = order.indexOf(chunk1.names[0]);
+                var order2 = order.indexOf(chunk2.names[0]);
+                return order1 - order2;
+            }
+        }),
+        new htmlWebpackPlugin({
+            template: 'src/components/rbt-motor/contact.html',      //联系我们
+            filename: 'contact.html',
             inject: 'head',
             chunksSortMode: function(chunk1, chunk2){           //引入多个js的时候，排序
                 var order = ['vendor', 'common', 'public', 'index'];
