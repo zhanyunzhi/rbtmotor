@@ -78,12 +78,17 @@ Object.defineProperty(exports, "__esModule", {
     value: true
 });
 
+__webpack_require__(8);
+
 __webpack_require__(6);
+
+__webpack_require__(7);
 
 __webpack_require__(4);
 
 //引入controller文件
 //import '../../lib/js/swiper.min.js';                   //引入swiper文件
+//引入sass文件
 /**
  * Created by user on 2017/4/10.
  */
@@ -95,6 +100,7 @@ function index() {
         //tpl: tpl
     };
 } //引入sass文件
+//引入sass文件
 exports.default = index;
 
 /***/ }),
@@ -106,7 +112,7 @@ exports.default = index;
 "use strict";
 
 
-__webpack_require__(7);
+__webpack_require__(9);
 
 //引入angular文件
 //var angular = require('angular');//引入angular
@@ -117,7 +123,7 @@ var appModule = angular.module("ngApp", []); /**
 appModule.controller("IndexCtrl", function ($scope, $http) {
     //url是相对于我们的html文件的
     /*$http.get("./data.txt").success(function (data) {
-     });*/
+      });*/
     var swiper = new Swiper('.nav-swiper-container', {
         pagination: '.swiper-pagination',
         paginationClickable: true,
@@ -204,6 +210,18 @@ new App();
 
 /***/ }),
 /* 7 */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 8 */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 9 */
 /***/ (function(module, exports) {
 
 /*
