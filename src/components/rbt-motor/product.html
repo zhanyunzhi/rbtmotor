@@ -11,14 +11,16 @@
     <!--<div ng-include="'nav.html'"></div>         &lt;!&ndash;公共头部&ndash;&gt;-->
     <nav>           <!--顶部导航-->
         <div>
-            <img class="logo" src="../../assets/rbt-motor/logo.png" />
+            <img class="logo" src="../../assets/rbt-motor/logo.jpg" />
         </div>
         <div class="navigator">
             <ul>
-                <li><a href="index.html">首页</a></li>
-                <li class="active"><a href="product.html">产品中心</a></li>
+                <li class="active"><a href="index.html">首页</a></li>
+                <li><a href="product.html">产品中心</a></li>
                 <li><a href="###">解决方案</a></li>
+                <li><a href="about.html">下载中心</a></li>
                 <li><a href="about.html">关于我们</a></li>
+                <li><a href="about.html">新闻中心</a></li>
                 <li><a href="contact.html">联系我们</a></li>
             </ul>
         </div>
@@ -26,33 +28,32 @@
     <section class="product-list">           <!-- 产品介绍模块 -->
         <h2>我们的产品</h2>
         <ul>
-            <li>
+            <li ng-repeat="product in products">
+                <img ng-src="{{product.image}}" />
+                <h4>{{product.name}}</h4>
+                <p>{{product.desc}}</p>
+                <a ng-href="{{product.url}}" class="btn btn-small">查看详情</a>
+            </li>
+            <!--<li>
                 <img src="../../assets/rbt-motor/product1.jpg" />
-                <h4>产品名称1</h4>
+                <h4>产品名称1{{product.title}}</h4>
                 <p>产品介绍（在首页这边取介绍的一部分单行）</p>
                 <a href="product.html" class="btn btn-small">查看详情</a>
-            </li>
-            <li>
-                <img src="../../assets/rbt-motor/product2.jpg" />
-                <h4>产品名称2</h4>
-                <p>产品介绍（在首页这边取介绍的一部分，在产品页再展示详细的介绍）（在首页这边取介绍的一部分，在产品页再展示详细的介绍）</p>
-                <a href="###" class="btn btn-small">查看详情</a>
-            </li>
-            <li>
-                <img src="../../assets/rbt-motor/product3.jpg" />
-                <h4>产品名称3</h4>
-                <p>产品介绍（在首页这边取介绍的一部分，在产品页再展示详细的介绍）</p>
-                <a href="###" class="btn btn-small">查看详情</a>
-            </li>
-            <li>
-                <img src="../../assets/rbt-motor/product3.jpg" />
-                <h4>产品名称3</h4>
-                <p>产品介绍（在首页这边取介绍的一部分，在产品页再展示详细的介绍）</p>
-                <a href="###" class="btn btn-small">查看详情</a>
             </li>
         </ul>
         <!--<a href="###" class="btn btn-large product-more">查看更多</a>-->
     </section>
     <div ng-include="'footer.html'"></div>         <!--公共底部-->
+    <img src="../../assets/rbt-motor/product1.jpg" hidden />
+    <img src="../../assets/rbt-motor/product2.jpg" hidden />
+    <img src="../../assets/rbt-motor/product3.jpg" hidden />
 </body>
+<script>
+    function GetQueryString(name) {
+        var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)");
+        var r = window.location.search.substr(1).match(reg);
+        if(r!=null)return  unescape(r[2]); return null;
+    }
+    window.sessionStorage.pId = GetQueryString('id');
+</script>
 </html>

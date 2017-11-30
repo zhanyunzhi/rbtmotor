@@ -1,0 +1,25 @@
+﻿{
+    "products": [
+        {
+            "name": "产品1",
+            "desc": "产品描述1",
+            "image": "assets/product1.jpg",
+            "url": "productDetail.html?id=1",
+            "isHome": "true"
+        },
+        {
+            "name": "产品2",
+            "desc": "产品描述2",
+            "image": "assets/product2.jpg",
+            "url": "productDetail.html?id=2",
+            "isHome": "false"
+        },
+        {
+            "name": "产品3",
+            "desc": "产品描述3",
+            "image": "assets/product3.jpg",
+            "url": "productDetail.html?id=3",
+            "isHome": "true"
+        }
+    ]
+}

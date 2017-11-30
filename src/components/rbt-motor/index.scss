@@ -8,7 +8,7 @@
 //公共模块
 //导航模块
 nav{
-  height:75px;
+  height:105px;
   width:1000px;
   margin: 0 auto;
   position: relative;
@@ -16,16 +16,17 @@ nav{
     position: absolute;
     left:0;
     top:10px;
-    width:150px;
+    //width:150px;
+    height:90px;
   }
   .navigator{
     @include clearfix();
     ul{
       line-height:65px;
-      padding-top:10px;
+      padding-top:30px;
       text-align: center;
       @include float(right);
-      font-size:16px;
+      font-size:18px;
       li{
         @include float();
         margin:0 8px;
