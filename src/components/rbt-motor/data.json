@@ -1,24 +1,44 @@
 {
+    "navs": [
+        {"name": "首页", "url": "index.html"},
+        {"name": "产品中心","url": "product.html"},
+        {"name": "解决方案","url": "a.html"},
+        {"name": "下载中心", "url": "d.html"},
+        {"name": "关于我们", "url": "about.html"},
+        {"name": "新闻中心", "url": "c.html"},
+        {"name": "联系我们", "url": "contact.html"}
+    ],
     "products": [
         {
             "name": "产品1",
-            "desc": "产品描述1",
+            "desc": "产品描述1（在首页这边取介绍的一部分，在产品页再展示详细的介绍）",
+            "detail": "<p>产品详细介绍（在首页这边取介绍的一部分，在产品页再展示详细的介绍苏定锁定佛挡杀佛似懂非懂</p><p>d撒娇肯定会啥的</p>",
             "image": "assets/product1.jpg",
             "url": "productDetail.html?id=1",
             "isHome": "true"
         },
         {
             "name": "产品2",
-            "desc": "产品描述2",
+            "desc": "产品描述2（在首页这边取介绍的一部分，在产品页再展示详细的介绍）（在首页这边取介绍的一部分，在产品页再展示详细的介绍）",
+            "detail": "<p>产品详细介绍（在首页这边取介绍的一部分，在产品页再展示详细的介绍苏定锁定佛挡杀佛似懂非懂</p><p>d撒娇肯定会啥的</p>",
             "image": "assets/product2.jpg",
             "url": "productDetail.html?id=2",
             "isHome": "false"
         },
         {
             "name": "产品3",
-            "desc": "产品描述3",
+            "desc": "产品描述3（在首页这边取介绍的一部分，在产品页再展示详细的介绍）（在首页这边取介绍的一部分，在产品页再展示详细的介绍）",
+            "detail": "<p>产品详细介绍（在首页这边取介绍的一部分，在产品页再展示详细的介绍苏定锁定佛挡杀佛似懂非懂</p><p>d撒娇肯定会啥的</p>",
             "image": "assets/product3.jpg",
             "url": "productDetail.html?id=3",
+            "isHome": "true"
+        },
+        {
+            "name": "产品4",
+            "desc": "产品描述4（在首页这边取介绍的一部分，在产品页再展示详细的介绍）（在首页这边取介绍的一部分，在产品页再展示详细的介绍）",
+            "detail": "<p>产品详细介绍（在首页这边取介绍的一部分，在产品页再展示详细的介绍苏定锁定佛挡杀佛似懂非懂</p><p>d撒娇肯定会啥的</p>",
+            "image": "assets/product1.jpg",
+            "url": "productDetail.html?id=4",
             "isHome": "true"
         }
     ]

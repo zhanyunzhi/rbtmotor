@@ -5,26 +5,11 @@
     <meta name="description" content="">
     <meta name="keywords" content="">
     <meta name="viewport" content="width=device-width">
-    <title>瑞必拓-产品详情页</title>
+    <title>瑞必拓-产品列表</title>
 </head>
 <body ng-controller="IndexCtrl" ng-cloak>
-    <!--<div ng-include="'nav.html'"></div>         &lt;!&ndash;公共头部&ndash;&gt;-->
-    <nav>           <!--顶部导航-->
-        <div>
-            <img class="logo" src="../../assets/rbt-motor/logo.jpg" />
-        </div>
-        <div class="navigator">
-            <ul>
-                <li class="active"><a href="index.html">首页</a></li>
-                <li><a href="product.html">产品中心</a></li>
-                <li><a href="###">解决方案</a></li>
-                <li><a href="about.html">下载中心</a></li>
-                <li><a href="about.html">关于我们</a></li>
-                <li><a href="about.html">新闻中心</a></li>
-                <li><a href="contact.html">联系我们</a></li>
-            </ul>
-        </div>
-    </nav>
+    <div ng-include="'nav.html'"></div>         <!--公共头部-->
+    <img src="../../assets/rbt-motor/product-banner.jpg" class="top-img"/>
     <section class="product-list">           <!-- 产品介绍模块 -->
         <h2>我们的产品</h2>
         <ul>
@@ -48,12 +33,4 @@
     <img src="../../assets/rbt-motor/product2.jpg" hidden />
     <img src="../../assets/rbt-motor/product3.jpg" hidden />
 </body>
-<script>
-    function GetQueryString(name) {
-        var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)");
-        var r = window.location.search.substr(1).match(reg);
-        if(r!=null)return  unescape(r[2]); return null;
-    }
-    window.sessionStorage.pId = GetQueryString('id');
-</script>
 </html>

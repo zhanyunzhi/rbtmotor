@@ -1,0 +1,105 @@
+@import "../../lib/sass/core/_setting";
+@import "../../lib/sass/core/_css3";
+@import "../../lib/sass/core/_mixin";
+@import "../../lib/sass/core/_media-queries";
+@import "../../lib/sass/core/_zyz";
+@import "../../lib/sass/module/_global";
+@import "../../lib/css/swiper.min.css";
+//关于我们页面
+.product-detail{
+  width:$viewWidth;
+  margin:80px auto;
+  @include clearfix();
+  section{
+    width:900px;
+    @include box-sizing(border-box);
+    @include float();
+    .top-title{
+      //margin-bottom:40px;
+      height: 45px;
+      background-color: #363636;
+      text-align: center;
+      //position: relative;
+      span{
+        color:$white;
+        background-color: $primaryC;
+        display: inline-block;
+        width:130px;
+        position: absolute;
+        margin-left:-65px;
+        line-height:47px;
+        margin-top:-2px;
+      }
+    }
+    .content{
+      padding: 10px 30px 60px;
+      border:1px solid #d0d0d0;
+      h2{
+        text-align: center;
+      }
+      .description{
+        font-size:16px;
+        text-align: left;
+        margin-bottom:30px;
+      }
+      p{
+        line-height:22px;
+        //margin: 10px 20px;
+      }
+      img{
+        width:100%;
+      }
+      .detail{
+        //margin: 10px 20px;
+      }
+    }
+  }
+  .product-detail-more{
+    width:275px;
+    @include float(right);
+    .more-title{
+      line-height: 45px;
+      background-color: #363636;
+      text-align: center;
+      color:$white;
+    }
+    ul{
+      padding: 20px 15px;
+      border:1px solid #d0d0d0;
+      li{
+        width:215px;
+        margin-bottom:20px;
+        background-color: $white;
+        padding:15px;
+        box-shadow: 0 0 3px $gray;
+        img{
+          width:100%;
+          @include transform(scale(1));
+          @include transition(all 0.3s ease);
+          &:hover{
+            @include transform(scale(1.1));
+          }
+        }
+        h4{
+          padding-top:8px;
+          padding-bottom:6px;
+          text-align: center;
+          color:$gray7;
+          font-size: 14px;
+          font-weight: normal;
+        }
+        p{
+          margin: 0 0 10px;
+          color:$grayDark;
+          font-size:12px;
+          line-height: 21px;
+          height:42px;
+          overflow: hidden;
+          /*text-overflow: ellipsis;
+          -webkit-box-orient: vertical;
+          -webkit-line-clamp: 2;*/
+        }
+      }
+    }
+  }
+}

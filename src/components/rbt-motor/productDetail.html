@@ -5,41 +5,37 @@
     <meta name="description" content="">
     <meta name="keywords" content="">
     <meta name="viewport" content="width=device-width">
-    <title>瑞必拓-关于我们</title>
+    <title>瑞必拓-产品详情</title>
 </head>
 <body ng-controller="IndexCtrl" ng-cloak>
-    <!--<div ng-include="'nav.html'"></div>         &lt;!&ndash;公共头部&ndash;&gt;-->
-    <nav>           <!--顶部导航-->
-        <div>
-            <img class="logo" src="../../assets/rbt-motor/logo.jpg" />
-        </div>
-        <div class="navigator">
-            <ul>
-                <li class="active"><a href="index.html">首页</a></li>
-                <li><a href="product.html">产品中心</a></li>
-                <li><a href="###">解决方案</a></li>
-                <li><a href="about.html">下载中心</a></li>
-                <li><a href="about.html">关于我们</a></li>
-                <li><a href="about.html">新闻中心</a></li>
-                <li><a href="contact.html">联系我们</a></li>
-            </ul>
-        </div>
-    </nav>
-    <div class="about-detail">
-        <img src="../../assets/rbt-motor/about-banner.jpg" class="top-img"/>
+    <div ng-include="'nav.html'"></div>         <!--公共头部-->
+    <img src="../../assets/rbt-motor/product-banner.jpg" class="top-img"/>
+    <div class="product-detail">
         <section>
             <div class="top-title">
-                <span>关于我们</span>
+                <span>{{productDetail.name}}</span>
             </div>
             <div class="content">
-                <h2>为企业提供一站式解决方案服务</h2>
-                <p class="description">十年磨一剑，厚积薄发</p>
-                <p>深圳前沿科技网络有限公司（简称：前沿科技）核心宗旨是：为客户的企业梳理和升级商业模式，为客户的产品提高销售额，为客户的企业运作提高效率，同时为客户的企业降低运营成本及人工成本。</p>
-                <p>深圳前沿科技网络有限公司（简称：前沿科技）核心宗旨是：为客户的企业梳理和升级商业模式，为客户的产品提高销售额，为客户的企业运作提高效率，同时为客户的企业降低运营成本及人工成本。</p>
-                <p>深圳前沿科技网络有限公司（简称：前沿科技）核心宗旨是：为客户的企业梳理和升级商业模式，为客户的产品提高销售额，为客户的企业运作提高效率，同时为客户的企业降低运营成本及人工成本。</p>
+                <!--<h2></h2>-->
+                <p class="description">{{productDetail.desc}}</p>
+                <img ng-src="{{productDetail.image}}" />
+                <div ng-bind-html="productDetail.detail | toTrusted" class="detail"></div>
             </div>
         </section>
+        <div class="product-detail-more">
+            <div class="more-title">推荐产品</div>
+            <ul>
+                <li ng-repeat="product in products | filter:{isHome:'true'}">
+                    <img ng-src="{{product.image}}" />
+                    <h4>{{product.name}}</h4>
+                    <p>{{product.desc}}</p>
+                    <a ng-href="{{product.url}}" class="btn btn-small">查看详情</a>
+                </li>
+            </ul>
+        </div>
     </div>
     <div ng-include="'footer.html'"></div>         <!--公共底部-->
 </body>
+<script>
+</script>
 </html>

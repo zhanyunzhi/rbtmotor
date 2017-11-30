@@ -7,10 +7,18 @@ var appModule = angular.module("ngApp",[]);
 appModule.controller("IndexCtrl",
     function($scope, $http, $location) {
         //url是相对于我们的html文件的
-        var pId = window.sessionStorage.pId;
+        function GetQueryString(name) {
+            var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)");
+            var r = window.location.search.substr(1).match(reg);
+            if(r!=null)return  decodeURIComponent(r[2]); return null;
+        }
+        window.sessionStorage.pId = GetQueryString('id');
+        var pId = parseInt(window.sessionStorage.pId) || '';
+        $scope.page = window.location.pathname.substr(window.location.pathname.lastIndexOf('/')+1,window.location.pathname.length-1);
         $http.get("./data.txt").success(function (data) {
             $scope.products = data.products;           //产品所有数据
-            $scope.product4Detail = data.products[pId-1];           //当前产品数据
+            $scope.productDetail = data.products[pId-1];           //当前产品数据
+            $scope.navs = data.navs;
         });
         var swiper = new Swiper('.nav-swiper-container', {
             pagination: '.swiper-pagination',
@@ -27,7 +35,7 @@ appModule.controller("IndexCtrl",
             autoplay: 2500,
             speed: 500,
             loop: true,
-        })
+        });
     }
 );
 appModule.filter(

@@ -84,23 +84,32 @@ __webpack_require__(6);
 
 __webpack_require__(7);
 
+__webpack_require__(10);
+
+__webpack_require__(9);
+
+__webpack_require__(11);
+
 __webpack_require__(4);
 
 //引入controller文件
 //import '../../lib/js/swiper.min.js';                   //引入swiper文件
 //引入sass文件
-/**
- * Created by user on 2017/4/10.
- */
-//import tpl from './index.html';          //引入模板
+//引入sass文件
+//引入sass文件
 function index() {
     $(function () {});
     return {
         name: 'index'
         //tpl: tpl
     };
-} //引入sass文件
+} //引入数据文件
 //引入sass文件
+//引入sass文件
+/**
+ * Created by user on 2017/4/10.
+ */
+//import tpl from './index.html';          //引入模板
 exports.default = index;
 
 /***/ }),
@@ -112,7 +121,7 @@ exports.default = index;
 "use strict";
 
 
-__webpack_require__(9);
+__webpack_require__(12);
 
 //引入angular文件
 //var angular = require('angular');//引入angular
@@ -120,10 +129,21 @@ var appModule = angular.module("ngApp", []); /**
                                               * Created by zhan on 2016/4/3.
                                               */
 
-appModule.controller("IndexCtrl", function ($scope, $http) {
+appModule.controller("IndexCtrl", function ($scope, $http, $location) {
     //url是相对于我们的html文件的
-    /*$http.get("./data.txt").success(function (data) {
-      });*/
+    function GetQueryString(name) {
+        var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
+        var r = window.location.search.substr(1).match(reg);
+        if (r != null) return decodeURIComponent(r[2]);return null;
+    }
+    window.sessionStorage.pId = GetQueryString('id');
+    var pId = parseInt(window.sessionStorage.pId) || '';
+    $scope.page = window.location.pathname.substr(window.location.pathname.lastIndexOf('/') + 1, window.location.pathname.length - 1);
+    $http.get("./data.txt").success(function (data) {
+        $scope.products = data.products; //产品所有数据
+        $scope.productDetail = data.products[pId - 1]; //当前产品数据
+        $scope.navs = data.navs;
+    });
     var swiper = new Swiper('.nav-swiper-container', {
         pagination: '.swiper-pagination',
         paginationClickable: true,
@@ -131,14 +151,14 @@ appModule.controller("IndexCtrl", function ($scope, $http) {
         speed: 700,
         loop: true
     });
-    var swiperS = new Swiper('.solution-swiper-container', {
+    var swiper1 = new Swiper('.solution-swiper-container', {
         slidesPerView: 3,
         spaceBetween: 30,
-        pagination: '.swiper-pagination',
-        paginationClickable: true,
+        //pagination: '.swiper-pagination',
+        //paginationClickable: true,
         autoplay: 2500,
         speed: 500,
-        loop: false
+        loop: true
     });
 });
 appModule.filter('toTrusted', ['$sce', function ($sce) {
@@ -222,6 +242,24 @@ new App();
 
 /***/ }),
 /* 9 */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 10 */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 11 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__.p + "data.txt";
+
+/***/ }),
+/* 12 */
 /***/ (function(module, exports) {
 
 /*
