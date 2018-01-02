@@ -9,7 +9,7 @@
 //导航模块
 nav{
   height:105px;
-  width:1000px;
+  width:1140px;
   margin: 0 auto;
   position: relative;
   .logo{
@@ -21,23 +21,41 @@ nav{
   }
   .navigator{
     @include clearfix();
-    ul{
-      line-height:65px;
-      padding-top:30px;
+    &>ul{
+      line-height:35px;
+      padding-top:45px;
       text-align: center;
       @include float(right);
       font-size:18px;
-      li{
+      &>li{
         @include float();
         margin:0 8px;
+        position: relative;
         a{
           color: $black12;
           cursor: pointer;
-          padding:6px 12px;
+          padding:6px 14px;
+          @include transition-duration(0s);
         }
         a:hover{
           color:$white;
           background-color: $primaryC;
+          .caret {
+            color:$white;
+          }
+        }
+        //箭头向下的三角图标
+        .caret {
+          display: inline-block;
+          width: 0;
+          height: 0;
+          margin-left: 2px;
+          vertical-align: middle;
+          border-top: 4px dashed;
+          border-top: 4px solid\9;
+          border-right: 4px solid transparent;
+          border-left: 4px solid transparent;
+          color:$black12;
         }
       }
       .active{
@@ -47,7 +65,44 @@ nav{
           background-color: $primaryC;
           cursor: pointer;
         }
+        .caret {
+          color:$white;
+        }
       }
+    }
+  }
+  //二级目录样式
+  .second-level{
+    position: absolute;
+    top:36px;
+    left:0;
+    font-size:16px;
+    color: #121212;
+    cursor: pointer;
+    z-index:9999;
+    border: 1px solid rgba(0,0,0,.15);
+    border-radius: 4px;
+    -webkit-box-shadow: 0 6px 12px rgba(0,0,0,.175);
+    box-shadow: 0 6px 12px rgba(0,0,0,.175);
+    background-color: #fff;
+    min-width:108px;
+    padding:0;
+    display: none;
+    &>li{
+      padding:12px 0;
+      line-height: 1;
+      width:100%;
+      &:hover{
+        background-color: $primaryC;
+        a{
+          color:$white;
+        }
+      }
+    }
+  }
+  .has-next:hover{
+    .second-level{
+      display: block;
     }
   }
 }
@@ -93,6 +148,7 @@ nav{
       background-color: $white;
       padding:30px;
       box-shadow: 0 0 3px $gray;
+      @include box-sizing(content-box);
       img{
         width:300px;
         @include transform(scale(1));

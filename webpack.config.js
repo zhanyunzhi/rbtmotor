@@ -222,11 +222,11 @@ module.exports = {
             }
         }),*/
         new ExtractTextPlugin('css/style.[hash:6].css'),              //单独打包css文件,所有的css文件都会打包进这里
-        new OptimizeCssAssetsPlugin({                   //压缩css文件
+        /*new OptimizeCssAssetsPlugin({                   //压缩css文件
             assetNameRegExp: /\.css$/g,
             cssProcessor: require('cssnano'),
             cssProcessorOptions: { discardComments: {removeAll: true } },
             canPrint: true
-        })
+        })*/
 ]
 }

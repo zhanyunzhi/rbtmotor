@@ -37,6 +37,7 @@ input[type="submit"],input[type="reset"],input[type="button"],button{
   color:$white;
   display: inline-block;;
   @include transition(all 0.3s ease);
+  padding:0;
   &:hover{
     color:$grayDark;
     border:1px solid $grayDark;
